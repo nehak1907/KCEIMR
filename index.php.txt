@@ -1,0 +1,34 @@
+import pandas as pd
+import numpy as np
+
+data = pd.read_csv("/content/sample_data/text1.csv")
+print("given dataset")
+print(data ,"n")
+
+#making an array of all the attributes
+d = np.array(data)[:,:-1]
+print("n the attributes are: ",d)
+
+
+#segretating the target that has negative and positive examples
+target =np.array(data)[:,-1]
+print("n the target is : ", target)
+
+#taining function to find-s algo
+def train(c,t):
+    for i, val in enumerate(t):
+        if val == "yes":
+            specific_hypothesis = c[i].copy
+            break
+
+    for i, val in enumerate(c,t):
+        if t[i] == "yes":
+            for x in range(len(specific_hypothesis)):
+                if val[x] != specific_hypothesis[x]:
+                    specific_hypothesis[x] ="?"
+                else:
+                    pass
+    return specific_hypothesis
+
+#obtaining the final hypothesis
+print("n the final hypothesis is: ",train(d,target))
